@@ -46,18 +46,18 @@ public class userDAO {
 		return -1; //DB오류
 	}
 	
-	public int register(userDTO user) {
+	public int register(String userID, String userPassword, String userName, String userAge, String userGender, String userEmail) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String SQL = "INSERT INTO USER VALUES(?, ?, ?, ?, ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, user.getUserID());
-			pstmt.setString(2, user.getUserPassword());
-			pstmt.setString(3, user.getUserName());
-			pstmt.setInt(4, user.getUserAge());
-			pstmt.setString(5, user.getUserGender());
-			pstmt.setString(6, user.getUserEmail());
+			pstmt.setString(1, userID);
+			pstmt.setString(2, userPassword);
+			pstmt.setString(3, userName);
+			pstmt.setInt(4, Integer.parseInt(userAge));
+			pstmt.setString(5, userGender);
+			pstmt.setString(6, userEmail);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,4 +71,7 @@ public class userDAO {
 		}
 		return -1; //DB오류
 	}
+
+	
+	
 }
